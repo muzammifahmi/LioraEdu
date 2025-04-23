@@ -1,3 +1,92 @@
+/* Latar belakang halaman */
+body {
+    background-color: #e3f2fd; /* Biru muda */
+    color: #0d47a1; /* Biru gelap */
+    font-family: 'Arial', sans-serif;
+}
+
+/* Gaya untuk header Selamat Datang */
+h2 {
+    font-weight: bold;
+    color: #0d47a1; /* Biru gelap */
+}
+
+.text-muted {
+    color: #1565c0 !important; /* Biru sedang */
+}
+
+/* Kartu dashboard */
+.card {
+    background-color: #ffffff; /* Putih */
+    border: 1px solid #90caf9; /* Biru terang */
+    border-radius: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 15px rgba(33, 150, 243, 0.3); /* Bayangan biru */
+}
+
+/* Ikon di dalam kartu */
+.card-body i {
+    color: #0d47a1; /* Biru gelap */
+}
+
+/* Tombol */
+.btn-primary {
+    background-color: #1976d2; /* Biru utama */
+    border-color: #1976d2;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #1565c0; /* Biru lebih gelap */
+    border-color: #1565c0;
+    transform: scale(1.05);
+}
+
+/* Selamat Datang */
+.bg-light {
+    background-color: #bbdefb !important; /* Biru sangat terang */
+    color: #0d47a1; /* Biru gelap */
+}
+
+/* Animasi */
+.animate__animated {
+    animation-duration: 0.8s;
+}
+
+/* Gaya tambahan */
+.h-100 {
+    height: 100%;
+}
+
+.shadow-sm {
+    box-shadow: 0 2px 4px rgba(33, 150, 243, 0.2); /* Bayangan biru */
+}
+
+/* Gaya untuk tata letak */
+.container {
+    max-width: 1200px;
+}
+
+.row {
+    margin-top: 20px;
+}
+
+/* Responsif */
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 20px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+}
+
 /* Animasi garis di bawah menu */
 .nav-link {
     position: relative;
@@ -16,10 +105,51 @@
     transition: width 0.3s ease;
 }
 
-.nav-link:hover::after{
+.nav-link:hover::after {
     width: 100%; /* Garis penuh saat hover atau aktif */
 }
 
 .nav-link:hover {
     color: #007bff; /* Warna teks saat hover */
+}
+
+/* Tabel dengan tema biru */
+.table-blue {
+    border: 1px solid #007bff;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.table-blue thead {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.table-blue th, .table-blue td {
+    text-align: center;
+    vertical-align: middle;
+    padding: 10px;
+    border: 1px solid #dee2e6;
+}
+
+.table-blue tbody tr:nth-child(even) {
+    background-color: #f2f8ff;
+}
+
+.table-blue tbody tr:nth-child(odd) {
+    background-color: #ffffff;
+}
+
+.table-blue tbody tr:hover {
+    background-color: #e9f5ff;
+}
+
+.pagination .page-link {
+    color: #007bff;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    border-color: #007bff;
+    color: #ffffff;
 }

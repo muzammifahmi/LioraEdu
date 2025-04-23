@@ -18,13 +18,6 @@ $stmt->execute();
 $result = $stmt->get_result();
 ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Daftar Soal</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
 <main class="container mt-5">
     <?php
     $query_kuis = "SELECT nama_kuis, deskripsi FROM kuis WHERE id_kuis = ?";

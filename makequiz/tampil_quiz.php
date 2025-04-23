@@ -8,7 +8,9 @@ $offset = ($page - 1) * $limit; // Hitung offset
 
 // Hitung total data
 $total_sql = "SELECT COUNT(*) AS total FROM kuis";
-$total_result = $koneksi->query($total_sql);
+$stmt = $koneksi->prepare($total_sql);
+$stmt->execute();
+$total_result = $stmt->get_result();
 $total_data = $total_result->fetch_assoc()['total'];
 $total_pages = ceil($total_data / $limit); // Total halaman
 
@@ -17,10 +19,13 @@ $sql = "SELECT k.*,
                (SELECT COUNT(*) FROM soal s WHERE s.id_kuis = k.id_kuis) AS jumlah_soal 
         FROM kuis k 
         ORDER BY k.id_kuis DESC 
-        LIMIT $limit OFFSET $offset";
-$result = $koneksi->query($sql);
+        LIMIT ? OFFSET ?";
+$stmt = $koneksi->prepare($sql);
+$stmt->bind_param("ii", $limit, $offset);
+$stmt->execute();
+$result = $stmt->get_result();
 ?>
-<main class="container mt-5">
+<main class="main-wrapper container mt-5">
     <h1 class="text-center mb-4">Daftar Kuis</h1>
     
     <!-- Tambahkan tombol Tambah Kuis -->
@@ -29,7 +34,7 @@ $result = $koneksi->query($sql);
     </div>
     
     <div class="table-responsive">
-        <table class="table table-bordered table-striped text-center" style="border-radius: 10px; overflow: hidden;">
+        <table class="table table-bordered table-striped text-center table-blue" style="border-radius: 10px; overflow: hidden;">
             <thead class="table-dark">
                 <tr>
                     <th>No</th>
@@ -87,6 +92,13 @@ $result = $koneksi->query($sql);
 <link rel="stylesheet" href="css/alertify.css">
 <link rel="stylesheet" href="css/themes/bootstrap.css">
 <script src="alertify.js"></script>
+<style>
+        .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 76vh;
+    }
+</style>
 
 <script type="text/javascript">
 // Override defaults

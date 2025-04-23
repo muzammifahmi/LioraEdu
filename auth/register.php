@@ -1,30 +1,34 @@
 <?php
 session_start();
-include "../koneksi.php"; 
+include "../koneksi.php";
 
 if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $username = mysqli_real_escape_string($koneksi, htmlspecialchars(trim($_POST['username'])));
     $password = mysqli_real_escape_string($koneksi, htmlspecialchars(trim($_POST['password'])));
+    $confirm_password = mysqli_real_escape_string($koneksi, htmlspecialchars(trim($_POST['confirm_password'])));
 
-    $query = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'");
-    $data = mysqli_fetch_array($query);
-
-    // Mengganti password_verify dengan perbandingan langsung
-    if ($data && $password === $data['password']) {
-        $_SESSION['username'] = $data['username'];
-        $_SESSION['id'] = $data['id'];
-        $_SESSION['role'] = $data['role']; // Tambahkan role ke dalam sesi
-        header("Location: ../index.php");
-        exit();
+    // Cek apakah username sudah digunakan
+    $check_username_query = mysqli_query($koneksi, "SELECT * FROM users WHERE username = '$username'");
+    if (mysqli_num_rows($check_username_query) > 0) {
+        $error = "Username telah digunakan. Silakan pilih username lain.";
     } else {
-        $error = "Username atau password salah!";
+        if ($password === $confirm_password) {
+            // Simpan username dan password ke database
+            $query = mysqli_query($koneksi, "INSERT INTO users (username, password) VALUES ('$username', '$password')");
+
+            if ($query) {
+                // Set flash message untuk registrasi berhasil
+                $_SESSION['success'] = "Registrasi berhasil! Silakan login untuk melanjutkan.";
+                header("Location: login.php");
+                exit();
+            } else {
+                $error = "Terjadi kesalahan saat mendaftar. Silakan coba lagi.";
+            }
+        } else {
+            $error = "Kata sandi dan konfirmasi kata sandi tidak cocok!";
+        }
     }
 }
-
-// Debugging: Periksa nilai sesi
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -32,7 +36,7 @@ echo '</pre>';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Quiz</title>
+    <title>Register - Quiz</title>
     <!-- Bootstrap CSS -->
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap JS -->
@@ -93,6 +97,21 @@ echo '</pre>';
             }
         }
     </style>
+    <script>
+        function togglePasswordVisibility(id, iconId) {
+            const passwordField = document.getElementById(id);
+            const icon = document.getElementById(iconId);
+            if (passwordField.type === "password") {
+                passwordField.type = "text";
+                icon.classList.remove("ri-eye-off-line");
+                icon.classList.add("ri-eye-line");
+            } else {
+                passwordField.type = "password";
+                icon.classList.remove("ri-eye-line");
+                icon.classList.add("ri-eye-off-line");
+            }
+        }
+    </script>
 </head>
 
 <body class="min-vh-100 d-flex flex-column bg-light">
@@ -101,7 +120,7 @@ echo '</pre>';
             <div class="text-center mb-4">
                 <h1 class="fs-2 text-primary">LioraEdu</h1>
                 <hr>
-                <p class="text-secondary">Masuk ke akun Anda</p>
+                <p class="text-secondary">Buat akun baru Anda</p>
             </div>
             <?php if (isset($error)) : ?>
                 <div class="alert alert-danger" role="alert">
@@ -118,41 +137,40 @@ echo '</pre>';
                         <input type="text" id="username" name="username" class="form-control" placeholder="Masukkan username" required>
                     </div>
                 </div>
-                <div class="mb-4">
+                <div class="mb-3">
                     <label for="password" class="form-label">Kata Sandi</label>
                     <div class="input-group">
                         <span class="input-group-text">
                             <i class="ri-lock-line"></i>
                         </span>
                         <input type="password" id="password" name="password" class="form-control" placeholder="Masukkan password" required>
-                        <button class="btn btn-outline-secondary" type="button" id="togglePassword">
-                            <i class="ri-eye-off-line" id="passwordIcon"></i>
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('password', 'passwordIcon')">
+                            <i id="passwordIcon" class="ri-eye-off-line"></i>
                         </button>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary w-100 py-2">Masuk</button>
+                <div class="mb-4">
+                    <label for="confirm_password" class="form-label">Konfirmasi Kata Sandi</label>
+                    <div class="input-group">
+                        <span class="input-group-text">
+                            <i class="ri-lock-line"></i>
+                        </span>
+                        <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Konfirmasi password" required>
+                        <button type="button" class="btn btn-outline-secondary" onclick="togglePasswordVisibility('confirm_password', 'confirmPasswordIcon')">
+                            <i id="confirmPasswordIcon" class="ri-eye-off-line"></i>
+                        </button>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary w-100 py-2">Daftar</button>
             </form>
             <div class="mt-4 pt-4 border-top">
                 <p class="text-center text-secondary">
-                    Belum memiliki akun?
-                    <a href="register.php" class="text-primary text-decoration-none fw-medium">Daftar sekarang</a>
+                    Sudah memiliki akun?
+                    <a href="login.php" class="text-primary text-decoration-none fw-medium">Masuk sekarang</a>
                 </p>
             </div>
         </div>
     </main>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const togglePassword = document.getElementById("togglePassword");
-            const passwordInput = document.getElementById("password");
-            const passwordIcon = document.getElementById("passwordIcon");
-            togglePassword.addEventListener("click", function() {
-                const type = passwordInput.getAttribute("type") === "password" ? "text" : "password";
-                passwordInput.setAttribute("type", type);
-                passwordIcon.classList.toggle("ri-eye-line");
-                passwordIcon.classList.toggle("ri-eye-off-line");
-            });
-        });
-    </script>
 </body>
 
 </html>

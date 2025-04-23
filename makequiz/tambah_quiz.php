@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<main class="container mt-5">
+<main class="main-wrapper container mt-5">
     <h2 class="mb-4 text-center">Tambah Kuis Baru</h2>
 
     <?php if (isset($error)): ?>
@@ -52,6 +52,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <link rel="stylesheet" href="../alertify.css">
 <link rel="stylesheet" href="../css/themes/bootstrap.css">
 <script src="../alertify.js"></script>
+<style>
+        .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 76vh;
+    }
+</style>
 
 <script type="text/javascript">
 // Override defaults

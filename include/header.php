@@ -7,8 +7,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../assets/style.css"> <!-- Tambahkan file CSS eksternal -->
+    <link rel="stylesheet" href="../assets/style.css"> 
     <link rel="stylesheet" href="../css/alertify.css">
+    <link rel="stylesheet" href="../node_modules/bootstrap-icons/font/bootstrap-icons.css">
+
 
     <!-- include bootstrap theme -->
     <link rel="stylesheet" href="../css/themes/bootstrap.css">
@@ -18,27 +20,44 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light"> <!-- Ubah tema menjadi cerah -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-"> 
         <div class="container-fluid">
-            <a class="navbar-brand" href="#">Zona Fikir</a>
+            <a class="navbar-brand" href="#">LioraEdu</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto"> <!-- Tambahkan ms-auto untuk memindahkan menu ke kanan -->
+                <ul class="navbar-nav ms-auto"> 
                     <li class="nav-item">
-                        <a class="nav-link active" href="index.php">Home</a>
+                        <a class="nav-link active" href="index.php">Beranda</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="?page=makequiz&item=tampil_quiz">Buat Quiz</a> <!-- Tambahkan menu Buat Quiz -->
+                        <a class="nav-link" href="?page=materi&item=tampil_materi">Materi</a> 
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="auth/logout.php">Logout</a>
+                        <a class="nav-link" href="?page=makequiz&item=daftarquiz">Quiz</a> 
+                    </li>
+                    <?php if (isset($_SESSION['role']) && $_SESSION['role'] === 'admin'): ?>
+                        <li class="nav-item"></li>
+                            <a class="nav-link" href="?page=makequiz&item=tampil_quiz">Buat Quiz</a> 
+                        </li>
+                    <?php endif; ?>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=peringkat&item=tampil_peringkat">Peringkat</a> 
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=user&item=tampil_user">Profil</a> 
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="?page=auth&item=logout">Logout</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
+    
+    
     <div class="container mt-4"></div>
 
     <script type="text/javascript">

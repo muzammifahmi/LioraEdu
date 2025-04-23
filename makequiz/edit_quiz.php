@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<main class="container mt-5">
+<main class="main-wrapper container mt-5">
     <h1 class="mb-4">Edit Quiz</h1>
     <form method="POST" action="" class="card p-4 shadow-sm">
         <input type="hidden" name="id" value="<?php echo $kuis['id_kuis']; ?>">
@@ -55,3 +55,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="submit" class="btn btn-primary">Simpan</button>
     </form>
 </main>
+
+<style>
+        .main-wrapper {
+      display: flex;
+      flex-direction: column;
+      min-height: 76vh;
+    }
+</style>
