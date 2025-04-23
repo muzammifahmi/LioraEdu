@@ -9,7 +9,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
     $query = mysqli_query($koneksi, "SELECT * FROM users WHERE username='$username'");
     $data = mysqli_fetch_array($query);
 
-    // Mengganti password_verify dengan perbandingan langsung
     if ($data && $password === $data['password']) {
         $_SESSION['username'] = $data['username'];
         $_SESSION['id'] = $data['id'];
@@ -20,11 +19,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         $error = "Username atau password salah!";
     }
 }
-
-// Debugging: Periksa nilai sesi
-echo '<pre>';
-print_r($_SESSION);
-echo '</pre>';
 ?>
 <!DOCTYPE html>
 <html lang="id">
