@@ -1,42 +1,21 @@
 <?php
-// filepath: c:\xampp\htdocs\quiz\materi\tampil_materi.php
-
-
-// Pastikan koneksi ke database sudah tersedia
 include 'koneksi.php';
-
-// Ambil parameter pencarian (jika ada)
 $search = isset($_GET['search']) ? trim($_GET['search']) : '';
-
-// Query untuk mengambil data dari tabel 'materi'
 $query = "SELECT * FROM materi";
 if (!empty($search)) {
     $query .= " WHERE judul LIKE ?";
 }
-
-// Siapkan statement
 $stmt = $koneksi->prepare($query);
-
-// Bind parameter jika ada pencarian
 if (!empty($search)) {
     $searchParam = "%$search%";
     $stmt->bind_param("s", $searchParam);
 }
-
-// Eksekusi query
 $stmt->execute();
 $result = $stmt->get_result();
-
-// Ambil data materi
 $materi = $result->fetch_all(MYSQLI_ASSOC);
-
-// Tutup statement
 $stmt->close();
-
-// Tutup koneksi
 $koneksi->close();
 ?>
-
 <main class="container mt-5">
     <div class="row min-vh-100 gx-0">
         <!-- Sidebar -->
@@ -57,7 +36,6 @@ $koneksi->close();
                 </ul>
             </div>
         </div>
-
         <!-- Content -->
         <div class="col-md-9 p-4">
             <h1 class="zonafikr-title mb-4">Daftar Materi</h1>
@@ -96,28 +74,22 @@ $koneksi->close();
         </div>
     </div>
 </main>
-
 <link rel="stylesheet" href="css/alertify.css">
 <link rel="stylesheet" href="css/themes/bootstrap.css">
 <script src="alertify.js"></script>
 <script type="text/javascript">
-    // Override defaults
     alertify.defaults.transition = "slide";
     alertify.defaults.theme.ok = "btn btn-primary";
     alertify.defaults.theme.cancel = "btn btn-danger";
     alertify.defaults.theme.input = "form-control";
-
-    // Function to confirm deletion
     function confirmDelete(url) {
         alertify.confirm(
             "Konfirmasi Hapus",
             "Yakin ingin menghapus materi ini?",
             function() {
-                // Redirect to the delete URL if confirmed
                 window.location.href = url;
             },
             function() {
-                // Do nothing if canceled
                 alertify.error("Penghapusan dibatalkan");
             }
         );

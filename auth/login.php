@@ -22,42 +22,33 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Quiz</title>
-    <!-- Bootstrap CSS -->
     <link href="../node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Bootstrap JS -->
     <script src="../node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Remix Icon -->
     <link href="../node_modules/remixicon/fonts/remixicon.css" rel="stylesheet">
     <style>
         .btn-primary {
             background-color: #2563eb;
             border-color: #2563eb;
         }
-
         .btn-primary:hover {
             background-color: #1d4ed8;
             border-color: #1d4ed8;
         }
-
         .form-control:focus {
             border-color: #2563eb;
             box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
         }
-
         body {
             font-family: "Inter", sans-serif;
         }
-
         .link-animated {
             position: relative;
             transition: color 0.3s ease;
         }
-
         .link-animated::after {
             content: '';
             position: absolute;
@@ -68,18 +59,14 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
             background-color: #2563eb;
             transition: width 0.3s ease;
         }
-
         .link-animated:hover::after {
             width: 100%;
         }
-
-        /* Animasi Fade-In */
         .fade-in {
             opacity: 0;
             transform: translateY(20px);
             animation: fadeIn 0.8s ease-out forwards;
         }
-
         @keyframes fadeIn {
             to {
                 opacity: 1;
@@ -148,5 +135,4 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
         });
     </script>
 </body>
-
 </html>

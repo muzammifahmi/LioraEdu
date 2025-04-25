@@ -9,7 +9,6 @@ $query = "SELECT u.username, SUM(hk.skor) AS total_skor
           LIMIT 10";
 $result = mysqli_query($koneksi, $query);
 ?>
-
 <main class="main-wrapper container mt-5">
   <div class="container mt-5">
     <h2 class="text-center mb-4">🏆 Leaderboard Peringkat</h2>
@@ -33,27 +32,23 @@ $result = mysqli_query($koneksi, $query);
                   <td>{$row['total_skor']}</td>
                 </tr>";
               $no++;
-            }
-            ?>
+            }?>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </main>
-
 <style>
   .main-wrapper {
     display: flex;
     flex-direction: column;
     min-height: 76vh;
   }
-
   .table-primary {
     background-color: #007bff !important;
     color: white;
   }
-
   .table-striped tbody tr:nth-of-type(odd) {
     background-color: #cce5ff;
   }
