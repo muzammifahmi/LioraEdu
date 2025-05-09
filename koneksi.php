@@ -1,6 +1,6 @@
 <?php
 
-$koneksi = new mysqli("localhost","root","","quiz_db");
+$koneksi = new mysqli("localhost","uphgmimc_admin","PGpzWiX{N&j,","uphgmimc_lioraedu");
 
 // Check connection
 if ($koneksi -> connect_errno) {
