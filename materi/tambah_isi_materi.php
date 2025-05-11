@@ -88,7 +88,7 @@ $koneksi->close();
             </div>
             <div class="text-end">
                 <button type="submit" class="btn btn-success">Simpan</button>
-                <a href="?page=materi&item=tambah_materi&id" class="btn btn-secondary">Kembali</a>
+                <a href="?page=materi&item=tambah_materi&id=<?= $id_materi ?>" class="btn btn-secondary">Kembali</a>
             </div>
         </form>
     </div>
