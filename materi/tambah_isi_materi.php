@@ -40,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Tutup koneksi
-$koneksi->close();
+
 ?>
 
 <main class="container mt-5">
