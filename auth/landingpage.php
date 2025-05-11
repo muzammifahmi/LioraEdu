@@ -106,10 +106,10 @@
             class="text-gray-800 hover:text-primary font-medium py-2">Tentang Kami</a>
           <div class="flex space-x-4 pt-2">
             <a
-              href="#"
+              href="login.php"
               class="px-4 py-2 text-primary border border-primary hover:bg-primary hover:text-white transition duration-300 !rounded-button whitespace-nowrap">Masuk</a>
             <a
-              href="#"
+              href="register.php"
               class="px-4 py-2 bg-primary text-white hover:bg-primary/90 transition duration-300 !rounded-button whitespace-nowrap">Daftar</a>
           </div>
         </div>
