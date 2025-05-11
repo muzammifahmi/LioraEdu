@@ -1,11 +1,18 @@
 <?php
-// Pastikan koneksi ke database sudah tersedia
+// Aktifkan error reporting
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
+// Pastikan koneksi ke database tersedia
 include 'koneksi.php';
 
-// Ambil ID materi dari URL
+// Ambil ID materi dari URL, baik GET atau POST
 $id_materi = isset($_GET['id']) ? intval($_GET['id']) : 0;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_GET['id'])) {
+    $id_materi = intval($_GET['id']);
+}
 
-// Inisialisasi variabel untuk status
+// Inisialisasi variabel status
 $status = '';
 
 // Ambil data materi berdasarkan ID
@@ -19,11 +26,11 @@ if ($id_materi > 0) {
     $stmt->close();
 }
 
-// Proses form untuk menambahkan isi materi
+// Proses form submit
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $isi_materi = isset($_POST['isi_materi']) ? trim($_POST['isi_materi']) : '';
 
-    if (!empty($isi_materi)) {
+    if (!empty($isi_materi) && $id_materi > 0) {
         $stmt = $koneksi->prepare("INSERT INTO isi_materi (id_materi, isi) VALUES (?, ?)");
         $stmt->bind_param("is", $id_materi, $isi_materi);
 
@@ -47,7 +54,7 @@ $koneksi->close();
     <div class="container mt-5">
         <h1 class="text-center mb-4">Tambah Isi Materi</h1>
 
-        <!-- Tampilkan data judul dan deskripsi dalam bentuk tabel -->
+        <!-- Tampilkan data judul dan deskripsi -->
         <?php if ($materi): ?>
             <table class="table table-bordered mb-4">
                 <tr>
@@ -80,8 +87,8 @@ $koneksi->close();
             </div>
         <?php endif; ?>
 
-        <!-- Form untuk menambahkan isi materi -->
-        <form action="" method="POST">
+        <!-- Form input -->
+        <form action="?page=materi&item=tambah_isi_materi&id=<?= $id_materi ?>" method="POST">
             <div class="mb-3">
                 <label for="isi_materi" class="form-label">Isi Materi</label>
                 <textarea class="form-control" id="isi_materi" name="isi_materi" rows="8" placeholder="Masukkan isi materi" required></textarea>
@@ -93,6 +100,6 @@ $koneksi->close();
         </form>
     </div>
 
-    <!-- Tambahkan Bootstrap JS -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </main>
