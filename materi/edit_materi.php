@@ -36,7 +36,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $updateStmt->execute();
 
         // Redirect ke halaman daftar materi setelah update
-        header("Location: tampil_materi.php");
+        header("Location: ?page=materi&tampil_materi");
         exit;
     } else {
         $error = "Judul, deskripsi, dan isi tidak boleh kosong.";
