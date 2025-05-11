@@ -1,10 +1,5 @@
 <?php
-$koneksi = new mysqli("localhost", "root", "", "quiz_db");
-
-if ($koneksi->connect_error) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
-}
-
+include 'koneksi.php';
 if (isset($_POST['question_id']) && isset($_POST['question_text'])) {
     $question_id = $_POST['question_id'];
     $question_text = $_POST['question_text'];

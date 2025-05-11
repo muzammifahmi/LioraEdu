@@ -1,16 +1,5 @@
 <?php
-// Koneksi ke database
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "quiz_db"; // Ganti dengan nama database Anda
-
-$koneksi = new mysqli($servername, $username, $password, $dbname);
-
-// Periksa koneksi
-if ($koneksi->connect_error) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
-}
+include 'koneksi.php';
 
 // Ambil ID quiz dari parameter URL
 $kuis_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
