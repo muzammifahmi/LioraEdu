@@ -1,9 +1,5 @@
 <?php
-$koneksi = new mysqli("localhost", "root", "", "quiz_db");
-
-if ($koneksi->connect_error) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
-}
+include 'koneksi.php';
 
 if (!isset($_GET['id_kuis'])) {
     die("ID kuis tidak tersedia.");
