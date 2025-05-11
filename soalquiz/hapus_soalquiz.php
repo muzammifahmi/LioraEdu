@@ -14,7 +14,8 @@ if (isset($_GET['hapus_id'])) {
     $stmt_hapus->bind_param("i", $hapus_id);
 
     if ($stmt_hapus->execute()) {
-        echo "<script>alert('Soal berhasil dihapus!'); window.location.href = '?page=soalquiz&item=daftar_soal&id_soal=" . $id_kuis . "';</script>";
+        header("Location: ?page=soalquiz&item=daftar_soal&id_soal=" . $id_kuis);
+        exit;
     } else {
         echo "<script>alert('Gagal menghapus soal: " . $koneksi->error . "');</script>";
     }
