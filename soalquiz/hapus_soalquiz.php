@@ -1,7 +1,7 @@
 <?php
 include 'koneksi.php';
-if (!isset($_GET['id_kuis'])) {
-    die("ID kuis tidak tersedia.");
+if (!isset($_GET['id_soal'])) {
+    die("ID soal; tidak tersedia.");
 }
 
 $id_kuis = intval($_GET['id_kuis']);
