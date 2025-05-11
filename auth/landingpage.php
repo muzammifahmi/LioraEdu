@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Zona Fikir - Platform Pembelajaran Online</title>
+  <title>--LioraEdu--</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -76,9 +76,7 @@
         <!-- Desktop Menu -->
         <div class="hidden md:flex items-center space-x-8">
           <a href="#" class="text-gray-800 hover:text-primary font-medium">Beranda</a>
-          <a href="#" class="text-gray-800 hover:text-primary font-medium">Kursus</a>
           <a href="#" class="text-gray-800 hover:text-primary font-medium">Tentang Kami</a>
-          <a href="#" class="text-gray-800 hover:text-primary font-medium">Kontak</a>
         </div>
         <div class="hidden md:flex items-center space-x-4">
           <a
@@ -105,13 +103,7 @@
             class="text-gray-800 hover:text-primary font-medium py-2">Beranda</a>
           <a
             href="#"
-            class="text-gray-800 hover:text-primary font-medium py-2">Kursus</a>
-          <a
-            href="#"
             class="text-gray-800 hover:text-primary font-medium py-2">Tentang Kami</a>
-          <a
-            href="#"
-            class="text-gray-800 hover:text-primary font-medium py-2">Kontak</a>
           <div class="flex space-x-4 pt-2">
             <a
               href="#"
@@ -170,21 +162,7 @@
             diperbarui mengikuti perkembangan terkini.
           </p>
         </div>
-        <!-- Feature 2 -->
-        <div
-          class="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition duration-300">
-          <div
-            class="w-16 h-16 flex items-center justify-center bg-primary/10 rounded-full mb-6 mx-auto">
-            <i class="ri-user-star-line ri-2x text-primary"></i>
-          </div>
-          <h3 class="text-xl font-semibold text-gray-900 mb-3 text-center">
-            Mentor Berpengalaman
-          </h3>
-          <p class="text-gray-600 text-center">
-            Belajar langsung dari mentor profesional yang siap membimbing dan
-            menjawab pertanyaan Anda.
-          </p>
-        </div>
+
 
         <!-- Feature 3 -->
         <div
@@ -354,7 +332,7 @@
       <div class="border-t border-gray-800 pt-8">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <p class="text-gray-500 text-sm mb-4 md:mb-0">
-            &copy; 2025 Zona Fikir. Hak Cipta Dilindungi.
+            &copy; 2025 LioraEdu. Hak Cipta Dilindungi.
           </p>
           <div class="flex space-x-6">
             <a

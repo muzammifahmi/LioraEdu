@@ -17,8 +17,7 @@ CREATE TABLE kuis (
     PRIMARY KEY (id_kuis),
     KEY id_user (id_user),
     CONSTRAINT kuis_ibfk_1 FOREIGN KEY (id_user) REFERENCES users (id`)
-) 
-
+); 
 CREATE TABLE soal (
     id_soal INT AUTO_INCREMENT PRIMARY KEY,
     id_kuis INT,
