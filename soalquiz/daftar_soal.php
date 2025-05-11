@@ -67,7 +67,7 @@ $result = $stmt->get_result();
                 <td><?php echo strtoupper($row['jawaban_benar']); ?></td>
                 <td>
                     <a href="?page=soalquiz&item=edit_soalquiz&id_soal=<?php echo $row['id_soal']; ?>" class="btn btn-warning btn-sm">Edit</a>
-                    <a href="?page=soalquiz&item=hapus_soalquiz&id_soal=<?php echo $row['id_soal']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus soal ini?');">Hapus</a>
+<a href="?page=soalquiz&item=hapus_soalquiz&id_soal=<?= $row['id_soal']; ?>&id_kuis=<?= $id_kuis ?>" class="btn btn-danger btn-sm" onclick="return confirm('Apakah Anda yakin ingin menghapus soal ini?');">Hapus</a>
                 </td>
             </tr>
             <?php endwhile; ?>
