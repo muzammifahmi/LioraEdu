@@ -1,12 +1,5 @@
 <?php
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-
-$koneksi = new mysqli("localhost", "root", "", "quiz_db");
-
-if ($koneksi->connect_error) {
-    die("Koneksi gagal: " . $koneksi->connect_error);
-}
+include 'koneksi.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Perbaiki nama variabel sesuai form
